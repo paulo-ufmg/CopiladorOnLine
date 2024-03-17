@@ -1,4 +1,4 @@
-Claro, aqui está uma documentação detalhada do sistema de compilador Python online:
+Documentação detalhada do sistema de compilador Python online:
 
 ---
 
