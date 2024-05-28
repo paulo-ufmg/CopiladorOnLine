@@ -79,3 +79,11 @@ body {
 .text-gray {
   color: #aaa;
 }
+
+.section {
+  display: none; /* Ocultar todas as seções por padrão */
+}
+
+.section.active {
+  display: block; /* Mostrar apenas a seção ativa */
+}
