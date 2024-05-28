@@ -1,175 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+  <head>
+
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex"/> <!-- index,follow"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Mente Maker">
-    <meta property="og:description" content="Python Online">
-    <meta id="icon" property="og:image" content="https://copiladoronline.onrender.com/static/img/logo.ico">
-    <meta property="og:url" content="https://copiladoronline.onrender.com">
-    <title>Python Online</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-            color: #333;
-            transition: background-color 0.3s, color 0.3s;
-        }
+    <meta property="og:title" content="Bioclass Classe Python">
+    <meta property="og:description" content="Ajuda Bioclass">
+    <meta id="icon" property="og:image" content="{{ url_for('static', filename='img/logo.ico') }}">
+    <meta property="og:url" content="https://ajudabioclass.onrender.com">
+    <title>Bioclass Ajuda</title>
 
-        #container {
-            width: 80%;
-            max-width: 90%;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s;
-        }
+        <!-- Bootstrap css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+    <body>
+        <div class="vertical-nav bg-white" id="sidebar">
+          <div class="py-4 px-3 mb-4 bg-light">
+            <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+              <div class="media-body">
+                <h4 class="m-0">Bioclass Help</h4>
+                <p class="font-weight-light text-muted mb-0">Bioinformática</p>
+              </div>
+            </div>
+          </div>
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #007bff;
-        }
+          <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Índice</p>
 
-        p {
-            margin-bottom: 10px;
-        }
+          <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                        Introdução
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#estrutura" class="nav-link text-dark font-italic">
+                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        Estrutura
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#atributos" class="nav-link text-dark font-italic">
+                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        Atributos
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#metodos" class="nav-link text-dark font-italic">
+                        <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                        Métodos
+                    </a>
+            </li>
+          </ul>
 
-        textarea {
-            width: 98%;
-            height: 350px;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 18px;
-            resize: vertical;
-            background-color: #f4f4f4;
-            color: #333;
-            transition: background-color 0.3s, color 0.3s;
-        }
+          <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Vídeos</p>
 
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: block;
-            margin: 20px auto 0;
-            transition: background-color 0.3s, color 0.3s;
-        }
+          <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+              <a href="#video1" class="nav-link text-dark font-italic">
+                        <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+                        Vídeo1
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#video2" class="nav-link text-dark font-italic">
+                        <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+                        Vídeo2
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#video3" class="nav-link text-dark font-italic">
+                        <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+                        Vídeo3
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#video4" class="nav-link text-dark font-italic">
+                        <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
+                        Vídeo4
+                    </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- End vertical navbar -->
 
-        button:hover {
-            background-color: #0056b3;
-        }
 
-        #resultado {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            overflow: auto;
-            background-color: #f4f4f4;
-            transition: background-color 0.3s;
-        }
+        <!-- Page content holder -->
+        <div class="page-content p-5" id="content">
+          <!-- Toggle button -->
+          <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
 
-        #resultado pre {
-            margin: 0;
-        }
+          <!-- Demo content -->
+            <h2 class="display-4 text-white">Classe Python - Bioinformática</h2>
+            
+            
+            
+            
+            
+            
+          
+           <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Procurar" aria-label="Recipient's username" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="button-addon2"><i class="fa fa-search active" aria-hidden="true" style="color:white"></i></button>
+              </div>
+            </div>
+                      <br/><br/><br/>   
+            
+          <p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
+          <p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+                <u>Bootstrapious</u></a>
+          </p>
+          <div class="separator"></div>
+          <div class="row text-white">
+            <div class="col-lg-7">
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor.
+              </p>
+              <div class="bg-white p-5 rounded my-5 shadow-sm">
+                <p class="lead font-italic mb-0 text-muted">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+              </div>
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor.
+              </p>
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor.
+              </p>
+            </div>
+            <div class="col-lg-5">
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor.
+              </p>
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor.
+              </p>
+            </div>
+          </div>
+          <section id="estrutua"><h2>Estrutura da Classe</h2></section>
+          <section id="atributos"><h2>Atributos da Classe</h2></section>
+          <section id="metodos"><h2>Métodos da Classe</h2></section>
+          <section id="video1"><h2>Video 1</h2></section>
+          <section id="video2"><h2>Video 2</h2></section>
+          <section id="video3"><h2>Video 3</h2></section>
+          <section id="video4"><h2>Video 4</h2></section>
 
-        #resultado pre.error {
-            color: red;
-        }
-
-        .dark-mode {
-            background-color: #1e1e1e !important;
-            color: #d4d4d4 !important;
-        }
-
-        .dark-mode #container {
-            background-color: #252526 !important;
-        }
-
-        .dark-mode h1 {
-            color: #61dafb !important;
-        }
-
-        .dark-mode textarea {
-            background-color: #1e1e1e !important;
-            color: #d4d4d4 !important;
-        }
-
-        .dark-mode button {
-            background-color: #1e1e1e !important;
-            color: #d4d4d4 !important;
-        }
-
-        .dark-mode #resultado {
-            background-color: #1e1e1e !important;
-        }
-
-        .dark-mode #resultado pre.error {
-            color: #ff6188 !important;
-        }
-    </style>
-</head>
-<body>
-    
-    <div id="container">
-        <h1>Python Online</h1>
-        <button onclick="toggleTheme()">Alterar Tema</button>
-        <p>Insira seu código Python abaixo e clique no botão "Executar" para ver o resultado:</p>
-        <textarea id="code" placeholder="# Insira seu código aqui" spellcheck="false"></textarea><br>
-        <button onclick="executarCodigo()">Executar</button>
-        <div id="resultado"></div>
-    </div>
-
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const container = document.getElementById('container');
-            const textarea = document.getElementById('code');
-            const buttons = document.querySelectorAll('button');
-            const resultado = document.getElementById('resultado');
-
-            body.classList.toggle('dark-mode');
-            container.classList.toggle('dark-mode');
-            textarea.classList.toggle('dark-mode');
-            buttons.forEach(btn => btn.classList.toggle('dark-mode'));
-            resultado.classList.toggle('dark-mode');
-        }
-
-        function executarCodigo() {
-            var codigo = document.getElementById('code').value;
-            fetch('/execute', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ code: codigo })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    document.getElementById('resultado').innerHTML = "<pre class='error'>" + data.error + "</pre>";
-                } else {
-                    document.getElementById('resultado').innerHTML = "<pre>" + data.output + "</pre>";
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                document.getElementById('resultado').innerHTML = "<pre class='error'>Erro na requisição. Verifique a conexão com o servidor.</pre>";
-            });
-        }
-    </script>
+        </div>
+        <!-- End demo content -->
+        
 </body>
+<script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script language="javascript" type="text/javascript" src=""></script>
+<script language="javascript" type="text/javascript" src=""></script>
+<script language="javascript" type="text/javascript" src=""></script>
+<script language="javascript" type="text/javascript" src=""></script>
+
+
+<script>
+    $(function() {
+      // Sidebar toggle behavior
+      $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content').toggleClass('active');
+      });
+    });
+    </script>
 </html>
+
+        
+        
+        
