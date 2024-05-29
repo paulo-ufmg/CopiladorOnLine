@@ -34,7 +34,8 @@ dist/
 *.egg
 .eggs/
 pip-wheel-metadata/
-
+*.old
+.old/
 # Arquivos de dependências
 Pipfile.lock
 poetry.lock
