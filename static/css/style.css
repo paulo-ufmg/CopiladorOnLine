@@ -3,7 +3,7 @@
 * ==========================================
 * CUSTOM UTIL CLASSES
 * ==========================================
-*
+*#e7e9eb
 */
 
 .vertical-nav {
@@ -60,16 +60,19 @@
 */
 
 body {
-  background: #599fd9;
-  background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
-  background: linear-gradient(to right, #599fd9, #c2e59c);
+  background-color: #e8f5e9; /* Verde claro suave */
+  /*background: #599fd9;
+  background: -webkit-linear-gradient(to right, #599fd9, #c2e59c); 
+  background: linear-gradient(to right, #599fd9,#599fd9, #c2e59c);*/
+  
+
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 .separator {
   margin: 3rem 0;
-  border-bottom: 1px dashed #fff;
+  border-bottom: 1px dashed #4b01f8;
 }
 
 .text-uppercase {
@@ -86,4 +89,8 @@ body {
 
 .section.active {
   display: block; /* Mostrar apenas a seção ativa */
+}
+
+.pratique {
+  cursor: pointer;
 }

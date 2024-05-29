@@ -1,0 +1,64 @@
+# Arquivos e diretórios de ambiente virtual
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Arquivos do Jupyter Notebook
+.ipynb_checkpoints
+
+# Arquivos compilados
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Arquivos de log
+*.log
+
+# Configurações de IDEs e editores de código
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de build
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+pip-wheel-metadata/
+
+# Arquivos de dependências
+Pipfile.lock
+poetry.lock
+
+# Arquivos do setuptools
+*.egg-info/
+.installed.cfg
+
+# Diretórios de testes
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+.cache/
+tests/__pycache__/
+
+# Arquivos de deployment
+*.env
+*.local
+*.heroku
+
+# Arquivos de configuração local
+.local/

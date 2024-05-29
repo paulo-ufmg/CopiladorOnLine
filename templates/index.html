@@ -13,10 +13,12 @@
 
         <!-- Bootstrap css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/compile.css') }}">
+
   </head>
-    <body>
+    <body> <!-- class="bg-light text-dark"-->
         <div class="vertical-nav bg-white" id="sidebar">
           <div class="py-4 px-3 mb-4 bg-light">
             <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
@@ -92,11 +94,45 @@
         <!-- Page content holder -->
         <div class="page-content p-5" id="content">
           <!-- Toggle button -->
-          <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
+          <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold"></small></button>
 
           <section id="introducao"  class="section">
             <!-- Demo content -->
-            <h2 class="display-4 text-white">Classe Python - Bioinformática</h2>
+            <!-- Autores-->
+            <div id="autores" >
+              <div class="d-flex justify-content-end">
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/fred.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">Fredy</h4>
+                      <p class="font-weight-light text-muted mb-0">fredyvp@ufmg.br</p>
+                    </div>
+                  </div>
+                
+
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/paulo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">Paulo</h4>
+                      <p class="font-weight-light text-muted mb-0">paulo-rocha@ufmg.br</p>
+                    </div>
+                  </div>    
+                
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/rodrigo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">Rodrigo</h4>
+                      <p class="font-weight-light text-muted mb-0">rod.jereissati@gmail.com</p>
+                    </div>
+                  </div>      
+                
+              </div>  
+            </div>
+                
+
+
+
+            <h2 class="display-4">Bioclass Python - Bioinformática</h2>
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Procurar" aria-label="Recipient's username" aria-describedby="button-addon2">
               <div class="input-group-append">
@@ -105,41 +141,39 @@
             </div>
                       <br/><br/><br/>   
             
-            <p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
-            <p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
-                <u>Bootstrapious</u></a>
+            <p class=" mb-0 mr-10">Este é o resultado de um trabalho dos alunos da disciplina de Ambientes de Computação da Pós Graduação do Departamento de Ciência da Computação da UFMG, 2024.</p>
+            <p class="">Código fonte: <a href="https://github.com/paulo-ufmg/Bioclass" class="text-primary" target="_blank">
+                <u>Github</u></a>
             </p>
             <div class="separator"></div>
-            <div class="row text-white">
-              <div class="col-lg-7">
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor.
+            <div class="row mr-10">
+              <div class="col-xs-12">
+                <p class="">A biblioteca Bioclass, tem o objetivo didádico para construção de scripts para um conjunto de códigos de software destinadas a aplicações em bioinformática. Seu principal objetivo é fornecer uma introdução a bioinformática com suas  análise de dados biológicos e a resolução de problemas comuns, tais como a manipulação de sequências de DNA, RNA e proteínas</p>
+
+                <h5>Exemplo de Uso</h5>
+                <p class="">A forma básica para usar a ferramenta Bioclass para ler um arquivo FASTA e calcular a frequência de nucleotídeos em uma sequenca de DNA:.
                 </p>
+                <pre class="pre-scrollable bg-dark text-light p-3 border border-primary rounded">
+                  <span class="text-success"># importa a classe Bioprof da biblioteca Bioclass</span>
+                  from Bioclass import Bioprof
+
+                  <span class="text-success"># Instancia o objeto seq com a classe Bioprof</span>
+                  seq = Bioprof()
+
+                  <span class="text-success"># Carrega sequências de um arquivo FASTA e armazena todas em sua biblioteca</span>
+                  seq.leiaArquivoFasta(nome_do_arquivo_fasta) 
+
+                  <span class="text-success"># Os método da Classe Bioprof recebe como argumento uma string com o id da sequência ou um int (index da sequencia armazenada)</span>
+                  print(f"Frequência de nucleotídeo: {seq.get_composicao_seq(id_da_sequenicia)}")
+
+                </pre>
+
+
                 <div class="bg-white p-5 rounded my-5 shadow-sm">
-                  <p class="lead font-italic mb-0 text-muted">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                  <h5>Conclusão</h5>
+                  <p class=" font-italic mb-0">"A Bioclass é uma biblioteca para efeitos didáticos para iniciantes em bioinformática para demonstrar como desenvolver uma programação utilizando o paradigma orientada a objeto para construção de ferramentas que facilita o trabalho com dados biológicos em Python. Ela permite introduzir conceitos básico para construção de códigos para análises complexas de maneira eficiente e rápida, contribuindo significativamente para construção de códigos para avanços na pesquisa biológica e médica.."</p>
                 </div>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor.
-                </p>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor.
-                </p>
-              </div>
-              <div class="col-lg-5">
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor.
-                </p>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                  dolor.
+                <p class="">
                 </p>
               </div>
             </div>
@@ -148,7 +182,75 @@
         
           <section id="estrutura"  class="section"><h2>Estrutura da Classe</h2></section>
           <section id="atributos" class="section"><h2>Atributos da Classe</h2></section>
-          <section id="metodos"   class="section"><h2>Métodos da Classe</h2></section>
+          <section id="metodos"   class="section"><h2>Métodos da Classe</h2>
+            <div class="separator"></div> 
+          
+            <p class="text-primary"><strong><i>def adiciona_seq(self,n1,n2,n3):</i></strong>
+            <span class="text-waring d-block">"""Insere uma sequência através de código"""</span></p>
+            <ul><li>#n1 - string com a identificação da sequência</li>
+                <li>#n2 - string com informações sobre a sequência</li>
+                <li>#n3 - srting da seqUencia</li>
+            </ul>    
+            <span class="pratique" data-target="adiciona_seq">
+              <img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
+              Pratique!
+            </span>  
+
+            <div id="adiciona_seq" class="ide" data-code="">
+              {% include 'help_bar_code.html' %}
+              <textarea id="code" placeholder="# Insira seu código aqui" spellcheck="false">
+
+from Bioclass import Bioprof # importa a classe Bioprof da biblioteca Bioclass
+
+seq = Bioprof() # instancia o objeto Bioprof
+
+#Digite abaixo o comanto para adicionar uma sequência ao objeto seq
+
+
+
+print(seq.get_seqs()) #Exibe a biblioteca de sequencias armazenadas no objeto
+
+
+              </textarea><br>
+              <button class="executar" type="button">Executar</button>
+              <button class="limpar" type="button">Limpar</button>
+              <div id="resultado"></div>
+            </div>
+            <!-- =================================== -->  
+            <div class="separator"></div> 
+            <p class="text-primary"><strong><i>def leiaArquivoFasta(self,nome_arquivo):</i></strong>
+              <span class="text-waring d-block"> """ Lê  todas as sequências de um arquivo Fasta """</span></p>
+              
+              <span class="pratique" data-target="leiaArquivoFasta">
+                <img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
+                Pratique!
+              </span>  
+                <div id="leiaArquivoFasta" class="ide" data-code="">
+                  {% include 'help_bar_code.html' %}
+                  <textarea id="code" placeholder="# Insira seu código aqui" spellcheck="false"></textarea><br>
+                  <button class="executar" type="button">Executar</button>
+                  <button class="limpar" type="button">Limpar</button>
+                  <div id="resultado"></div>
+                </div>
+            <!-- =================================== -->  
+            <div class="separator"></div> 
+            <p class="text-primary"><strong><i>def get_seqs(self):</i></strong>
+              <span class="text-waring d-block"> """Retorna a lista de sequencias registradas"""</span></p>
+              
+              <span class="pratique" data-target="get_seqs">
+                <img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
+                Pratique!
+              </span>  
+                <div id="def_get_seqs" class="ide" data-code="">
+                  {% include 'help_bar_code.html' %}
+                  <textarea id="code" placeholder="# Insira seu código aqui" spellcheck="false"></textarea><br>
+                  <button class="executar" type="button">Executar</button>
+                  <button class="limpar" type="button">Limpar</button>
+                  <div id="resultado"></div>
+                </div>
+            <!-- =================================== -->  
+            <div class="separator"></div> 
+          </section>
           <section id="video1"    class="section"><h2>Video 1</h2></section>
           <section id="video2"    class="section"><h2>Video 2</h2></section>
           <section id="video3"    class="section"><h2>Video 3</h2></section>
@@ -160,53 +262,12 @@
 </body>
 <script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/ajuda.js') }}"></script>
+<script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/compile.js') }}"></script>
 <script language="javascript" type="text/javascript" src=""></script>
 <script language="javascript" type="text/javascript" src=""></script>
 <script language="javascript" type="text/javascript" src=""></script>
-<script language="javascript" type="text/javascript" src=""></script>
 
-
-<script>
-    $(function() {
-      // Sidebar toggle behavior
-      $('#sidebarCollapse').on('click', function() {
-        $('#sidebar, #content').toggleClass('active');
-      });
-    });
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    function showSection(id) {
-      sections.forEach(section => {
-        if (section.id === id) {
-          section.classList.add('active');
-        } else {
-          section.classList.remove('active');
-        }
-      });
-    }
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevenir o comportamento padrão da âncora
-        const targetId = this.getAttribute('href').substring(1);
-        showSection(targetId);
-        window.history.pushState(null, '', `#${targetId}`); // Atualizar a URL sem recarregar a página
-      });
-  });
-
-  // Mostrar a seção correta com base na âncora na URL ao carregar a página
-  const currentHash = window.location.hash.substring(1);
-  if (currentHash) {
-    showSection(currentHash);
-  } else {
-    // Opcional: Mostrar a primeira seção por padrão ao carregar a página
-    sections[0].classList.add('active');
-  }
-});
-    </script>
 </html>
 
         

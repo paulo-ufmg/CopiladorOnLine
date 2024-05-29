@@ -1,0 +1,33 @@
+textarea {
+    width: 98%;
+    height: 250px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+    resize: vertical;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.ide {
+    display: none;
+}
+
+.ide.active {
+    display: block;
+}
+
+/* Estilos personalizados para a navbar */
+.navbar-ajuda-code {
+    font-size: 10px; /* Ajuste o tamanho da fonte conforme necessário */
+    padding-top: 5px; /* Ajuste o espaçamento superior */
+    padding-bottom: 5px; /* Ajuste o espaçamento inferior */
+  }
+
+  .navbar-custom .navbar-nav .nav-link {
+    padding-right: 5px; /* Ajuste o espaçamento lateral */
+    padding-left: 5px;  /* Ajuste o espaçamento lateral */
+  }

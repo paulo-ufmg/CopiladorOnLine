@@ -210,6 +210,9 @@ class Bioprof:
 
     def adiciona_seq(self,n1,n2,n3):
         """Insere uma sequência através de código"""
+        #n1 - string com a identificação da sequência
+        #n2 - string com informações sobre a sequência
+        #n3 - srting da seqUencia
         if(self.nova_sequencia(n1)):
             self.insert_comment(n1,n2)
             for n in n3:
