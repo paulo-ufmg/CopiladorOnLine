@@ -94,3 +94,8 @@ body {
 .pratique {
   cursor: pointer;
 }
+
+.bio {
+  margin-left: 80px;
+  cursor: pointer;
+}

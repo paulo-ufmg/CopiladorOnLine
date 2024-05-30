@@ -112,7 +112,7 @@
                 
 
                 
-                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/_paulo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/_paulo.png') }}" alt="..." width="64" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                     <div class="media-body">
                       <h4 class="m-0">Paulo</h4>
                       <p class="font-weight-light text-muted mb-0">paulo-rocha@ufmg.br</p>
@@ -120,7 +120,7 @@
                   </div>    
                 
                 
-                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/_rodrigo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/_rodrigo.png') }}" alt="..." width="64" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                     <div class="media-body">
                       <h4 class="m-0">Rodrigo</h4>
                       <p class="font-weight-light text-muted mb-0">rod.jereissati@gmail.com</p>
@@ -184,74 +184,75 @@
           <section id="estrutura"  class="section"><h2>Estrutura da Classe</h2></section>
           <section id="atributos" class="section"><h2>Atributos da Classe</h2></section>
           <section id="metodos"   class="section"><h2>Métodos da Classe</h2>
+            
+            <!-- =================================== -->  
+            <div class="metodo"  data-target="get_seqs">
+              <p class="text-primary"><strong><i>def get_seqs(self):</i></strong>
+              <span class="text-waring d-block"> """Retorna a lista de <b>sequencias</b> registradas"""</span></p>
+              <span class="pratique text-danger"><img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
+                Pratique!</span>
+              <span class="bio text-info"><img src="{{ url_for('static', filename='img/biologo.png') }}" width="40" class="img-fluid" alt="Example Icon">
+                O que é?</span>
+            </div>    
+                  
+            
+            
+              <!-- =================================== -->  
+            <div class="separator"></div> 
+            
+            <div class="metodo" data-target="adiciona_seq">
+              <p class="text-primary"><strong><i>def adiciona_seq(self,n1,n2,n3):</i></strong>
+              <span class="text-waring d-block">"""Insere uma sequência através de código"""</span></p>
+              <ul><li>#n1 - string com a identificação da sequência</li>
+                  <li>#n2 - string com informações sobre a sequência</li>
+                  <li>#n3 - srting da seqUencia</li>
+              </ul>
+                  
+              <span class="pratique text-danger"><img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
+                Pratique!</span>
+              <span class="bio text-info"><img src="{{ url_for('static', filename='img/biologo.png') }}" width="40" class="img-fluid" alt="Example Icon">
+                O que é?</span>  
+            </div>
+
+            <!-- =================================== -->    
+            <div class="separator"></div> 
+              <div class="metodo" data-target="leiaArquivoFasta">
+              <p class="text-primary"><strong><i>def leiaArquivoFasta(self,nome_arquivo):</i></strong>
+              <span class="text-waring d-block"> """ Lê  todas as sequências de um <b>arquivo Fasta</b> """</span></p>
+              
+              <span class="pratique text-danger"><img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
+                Pratique!</span>
+              <span class="bio text-info"><img src="{{ url_for('static', filename='img/biologo.png') }}" width="40" class="img-fluid" alt="Example Icon">
+                O que é?</span>  
+            </div>
+
+
+            <!-- =================================== -->  
+            <div class="separator"></div> 
+
+            <!-- =================================== -->  
+            <div class="separator"></div> 
+
+
+            <!-- =================================== -->  
+            <div class="separator"></div> 
+
+
+            <!-- =================================== -->  
+            <div class="separator"></div> 
+
+
+            <!-- =================================== -->  
             <div class="separator"></div> 
           
-            <p class="text-primary"><strong><i>def adiciona_seq(self,n1,n2,n3):</i></strong>
-            <span class="text-waring d-block">"""Insere uma sequência através de código"""</span></p>
-            <ul><li>#n1 - string com a identificação da sequência</li>
-                <li>#n2 - string com informações sobre a sequência</li>
-                <li>#n3 - srting da seqUencia</li>
-            </ul>    
-            <span class="pratique" data-target="adiciona_seq">
-              <img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
-              Pratique!
-            </span>  
-
-            <div id="adiciona_seq" class="ide" data-code="">
-              {% include 'help_bar_code.html' %}
-              <textarea id="code" placeholder="# Insira seu código aqui" spellcheck="false">
-
-from Bioclass import Bioprof # importa a classe Bioprof da biblioteca Bioclass
-
-seq = Bioprof() # instancia o objeto Bioprof
-
-#Digite abaixo o comanto para adicionar uma sequência ao objeto seq
+          
 
 
 
-print(seq.get_seqs()) #Exibe a biblioteca de sequencias armazenadas no objeto
 
-
-              </textarea><br>
-              <button class="executar" type="button">Executar</button>
-              <button class="limpar" type="button">Limpar</button>
-              <div id="resultado"></div>
-            </div>
-            <!-- =================================== -->  
-            <div class="separator"></div> 
-            <p class="text-primary"><strong><i>def leiaArquivoFasta(self,nome_arquivo):</i></strong>
-              <span class="text-waring d-block"> """ Lê  todas as sequências de um arquivo Fasta """</span></p>
-              
-              <span class="pratique" data-target="leiaArquivoFasta">
-                <img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
-                Pratique!
-              </span>  
-                <div id="leiaArquivoFasta" class="ide" data-code="">
-                  {% include 'help_bar_code.html' %}
-                  <textarea id="code" placeholder="# Insira seu código aqui" spellcheck="false"></textarea><br>
-                  <button class="executar" type="button">Executar</button>
-                  <button class="limpar" type="button">Limpar</button>
-                  <div id="resultado"></div>
-                </div>
-            <!-- =================================== -->  
-            <div class="separator"></div> 
-            <p class="text-primary"><strong><i>def get_seqs(self):</i></strong>
-              <span class="text-waring d-block"> """Retorna a lista de sequencias registradas"""</span></p>
-              
-              <span class="pratique" data-target="get_seqs">
-                <img src="{{ url_for('static', filename='img/pratique.png') }}" width="64" class="img-fluid" alt="Example Icon">
-                Pratique!
-              </span>  
-                <div id="def_get_seqs" class="ide" data-code="">
-                  {% include 'help_bar_code.html' %}
-                  <textarea id="code" placeholder="# Insira seu código aqui" spellcheck="false"></textarea><br>
-                  <button class="executar" type="button">Executar</button>
-                  <button class="limpar" type="button">Limpar</button>
-                  <div id="resultado"></div>
-                </div>
-            <!-- =================================== -->  
-            <div class="separator"></div> 
+          
           </section>
+
           <section id="video1"    class="section"><h2>Video 1</h2></section>
           <section id="video2"    class="section"><h2>Video 2</h2></section>
           <section id="video3"    class="section"><h2>Video 3</h2></section>
@@ -259,6 +260,119 @@ print(seq.get_seqs()) #Exibe a biblioteca de sequencias armazenadas no objeto
 
         </div>
         <!-- End demo content -->
+<!-- Estrutura da Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLabel"><img src="{{ url_for('static', filename='img/pythonlogo.png') }}" width="32" class="img-fluid" alt="Example Icon">Compilador Python</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="compilador" data-code="">
+          {% include 'help_bar_code.html' %}
+          <textarea id="ide" placeholder="# Insira seu código aqui" spellcheck="false">from Bioclass import Bioprof</textarea><br>
+          <button id="run" type="button" title="Executa código Python">Executar</button>
+          <button id="clear" type="button" title="Apaga o terminal de resultado">Limpar</button>
+          <div id="result">
+            <span class="text-success"><pre>Resultado&raquo;</pre></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <!-- <button type="button" class="btn btn-primary">Salvar mudanças</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Estrutura da Modal bio-->
+<div class="modal fade" id="bioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLabel"><img src="{{ url_for('static', filename='img/biologo.png') }}" width="32" class="img-fluid" alt="Example Icon"> Biologia - O que é?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="bio" data-code="">
+          <h5>O que é?</h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <!-- <button type="button" class="btn btn-primary">Salvar mudanças</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div id="conceito" style="display:none">
+  <div class="get_seqs">
+    <p>Em bioinformática, uma sequência refere-se à ordem linear de nucleotídeos em uma molécula de DNA ou RNA, ou de aminoácidos em uma proteína.</p>
+    <ul>
+      <li><span class="text-primary">DNA (Ácido Desoxirribonucleico): </span><br>
+        <p>Consiste em uma sequência de nucleotídeos representados A (adenina), T (timina), C (citosina) e G (guanina).</p>
+        <span>Exemplo:</span><br>
+        <strong>ATGCGTACGTAGCTAG</strong>
+      </li>
+      <li><span class="text-primary">RNA (Ácido Ribonucleico): </span><br>
+        <p>Semelhante ao DNA, mas com uracila (U) substituindo a timina (T).</p> 
+        <span>Exemplo:</span><br>
+        <strong>AUGCGUACGUAGCUAG</strong>
+      </li>
+      <li><span class="text-primary">Proteínas:</span>
+        <p>Compostas por cadeias de aminoácidos, que são representadas por letras únicas. Existem 20 aminoácidos comumente encontrados nas proteínas, como alanina (A), cisteína (C), glicina (G), etc.</p>
+        <span>Exemplo:</span><br>
+        <strong>MKTIIALSYIFCLVFA</strong>
+      </li>
+    </ul>
+  </div>
+  <div class="adiciona_seq">
+    <p>Em bioinformática, muitas operações e análises requerem a comparação ou o processamento de mais de uma sequências biológicas (como DNA, RNA ou proteínas). Segue algumas exemplos:</p>
+    <ul>
+        <li>Alinhamento de Sequências</li>
+        <li>Busca de Similaridade</li>
+        <li>Comparação de Genomas</li>
+        <li>Análise Filogenética</li>
+        <li>Detecção de Motivos</li>
+        <li>Análise de Expressão Gênica</li>
+        <li>Análise de Variantes Genéticas</li>
+        <li>Anotação de Função de Proteína</li>
+        <li>Montagem de Genomas</li>
+    </ul>   
+    <p>Para execução detas tarefas, o objeto permite o cadastro de várias sequênas, sendo pelo método <b><i>adiciona_seq()</i></b> ou por leitura de arquivo de sequências.</p>
+  </div>
+  <div class="leiaArquivoFasta">
+    <p>Um arquivo FASTA é um formato de arquivo amplamente utilizado para armazenar sequências biológicas, como sequências de DNA, RNA ou proteínas. O formato é simples e humanamente legível, facilitando a manipulação e análise de dados de sequências. Segue o layout de um arquivo FASTA:</p>
+    <ul>
+      <li>Linha de cabeçalho: começa com o sinal ">", seguida por uma descrição opcional ou identificador único da sequência.<br>
+        <small>A linha de cabeçalho pode conter informações adicionais sobre a sequência, como nome do gene, espécie e outras anotações</small><br>
+      </li>
+      <li>A sequência biológica vem imediatamente após a linha de cabeçalho. Ela pode ser dividida em várias linhas para facilitar a leitura, mas não deve conter espaços ou caracteres que não façam parte da sequência.
+      </li>
+    </ul>
+    <span>Exemplo:</span><br>
+    <strong>>seq1 Homo sapiens hemoglobin subunit alpha<br>ATGGTGCTTCTCCTGCTGCTGCTGCTGCTGCTGCTG</strong>
+  </div>
+  <div class="">
+    <p></p>
+
+  </div>
+  <div class="">
+    <p></p>
+
+  </div>
+
+
+
+   
+  
+</div>
         
 </body>
 <script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

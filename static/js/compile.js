@@ -1,51 +1,104 @@
 var pratique = document.querySelectorAll('.pratique');   
-var execute = document.querySelectorAll('.executar');   
-var limpar = document.querySelectorAll('.limpar');   
-
+var bio = document.querySelectorAll('.bio');   
+var dicas  = document.querySelectorAll('.dica');   
 pratique.forEach(function(el) {
     el.addEventListener('click', function() {
-        // Remove a classe 'active' de todas as divs
-        document.querySelectorAll('.ide').forEach(function(div) {
-            div.classList.remove('active');
-        });
-      
-        // Adiciona a classe 'active' à div correspondente ao botão clicado
-        var targetId = this.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
+    // Encontra a div pai mais próximo
+    var parentDiv = $(this).closest('div');
+    // Obtém o valor do atributo data-target
+    var targetId = parentDiv.attr('data-target');
+        $('#compilador').data('code', targetId);
+        let titulo = $("#myModal .modal-title").html();
+        $("#myModal .modal-title").html(titulo + " ( " + targetId +" )");
+        
+        ide = document.getElementById("ide"); // Recebe o elemento textArea do código
+        ide.value += "\n";
+        $('#myModal').modal('show');
+        /*usando vanila
+        var myModal = document.getElementById('myModal');
+        var modal = new bootstrap.Modal(myModal);
+        modal.show();   */   
     });
  });
 
-execute.forEach(function(el) {
+ bio.forEach(function(el) {
     el.addEventListener('click', function() {
-      //alert('Cliquei em: ' + this.textContent);
-      var codigo = document.getElementById('code').value;
-      fetch('/execute', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ code: codigo })
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.error) {
-              document.getElementById('resultado').innerHTML = "<pre class='error'>" + data.error + "</pre>";
-          } else {
-              
-              document.getElementById('resultado').innerHTML = "<pre>" + data.output + "</pre>";
-          }
-      })
-      .catch(error => {
-          console.error('Erro:', error);
-          document.getElementById('resultado').innerHTML = "<pre class='error'>Erro na requisição. Verifique a conexão com o servidor.</pre>";
-      });
+        // Encontra a div pai mais próximo
+        var parentDiv = $(this).closest('div');
+        // Obtém o valor do atributo data-target
+        var targetId = parentDiv.attr('data-target');
+        $('#bio').data('code', targetId); //Talvez seja opcional
+        // Buscando um texto de conceito para o método
+        var conceito = $('#conceito');
+        var metodo = conceito.find("." + targetId); //Busca na div conceito a div específica do método
+        // Obtém o conteúdo HTML da div filha
+        var metodoContent = metodo.html();
+        $("#bio").html(metodoContent);
+        $('#bioModal').modal('show');
     });
-  });
+ });
+ //execute o código em Python
+ document.getElementById('run').addEventListener('click', function() {
+    //alert('Cliquei em: ' + this.textContent);
+    var codigo = document.getElementById('ide').value;
+    fetch('/execute', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code: codigo })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            document.getElementById('result').innerHTML = "<pre class='error'>" + data.error + "</pre>";
+        } else {
+            document.getElementById('result').innerHTML = "<pre>" + data.output + "</pre>";
+        }
+    })
+    .catch(error => {
+        alert("catch ERRO:");
+        console.error('Erro:', error);
+        document.getElementById('result').innerHTML = "<pre class='error'>Erro na requisição. Verifique a conexão com o servidor.</pre>";
+    });
+});
+//Limpar a tela do editor de código
+document.getElementById('limpa_ide').addEventListener('click', function() {
+    document.getElementById("ide").value = "from Bioclass import Bioprof";
+    dicas.forEach(function(dica) {
+        $(dica).prop('disabled', false);
+        //$('#compilador').find('.dica').prop('disabled', true);    
+    })
+    document.getElementById('result').innerHTML = "<pre>Resultado&raquo;</pre>";    
+});
+
+ //Limpar o terminal de resposta ao usuário
+ document.getElementById('clear').addEventListener('click', function() {
+    document.getElementById("result").innerHTML = "<span class='text-success'>Resultado&raquo;</span>"
+});
+
+dicas.forEach(function(dica) {
+    dica.addEventListener('click', function() {
+        // Busca a targetId da IDE clicada 
+        //var targetId = this.getAttribute('data-target');
+        var child = document.getElementById(this.getAttribute('id'));
+        var metodo = $('#compilador').data('code');
+        //alert("Método: " + metodo + "   Linha: " + child.innerText)
+        ide = document.getElementById("ide"); // Recebe o elemento textArea do código
+        ide.value += "\n" + codigo[metodo][parseInt(child.innerText)-1]; //Adiciona a linha de código referente do botão pressionado
+        // Desativa o botão
+        $(this).prop('disabled', true);
+    });
+});
 
 
-  limpar.forEach(function(el) {
-    el.addEventListener('click', function() {
-      //alert('Cliquei em: ' + this.textContent);
-      document.getElementById('resultado').innerHTML = "";
-    })  
-  });
+
+
+ let codigo = {
+    get_seqs : ["seq = Bioprof()","print(seq.get_seqs())","\n#clique no botão Executar"],
+    adiciona_seq : ["seq = Bioprof()","seq.adiciona_seq('Genoma1','informação do genoma','ATGCGTAACGTTAGC')","print(seq.get_seqs())","\n#clique no botão Executar",""],
+    leiaArquivoFasta:  ["seq = Bioprof()","seq.leiaArquivoFasta('sequencia_dna.fasta')","print(seq.get_seqs())","\n#clique no botão Executar"]
+    
+ }
+ 
