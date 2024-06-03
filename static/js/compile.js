@@ -1,6 +1,27 @@
-var pratique = document.querySelectorAll('.pratique');   
-var bio = document.querySelectorAll('.bio');   
-var dicas  = document.querySelectorAll('.dica');   
+var divMetodos = document.querySelectorAll('.metodo'); //Contém todas as div´s de métodos
+var pratique = document.querySelectorAll('.pratique'); //Contém todos os boutton Pratique  
+var bio = document.querySelectorAll('.bio');    //Contém todos os button "O que é?"
+var dicas  = document.querySelectorAll('.dica');  //Contém todaos os botões acima da ide de código
+var metodos = [];  //Array com os métodos
+var divConceito = document.getElementById('conceito'); 
+
+
+divMetodos.forEach(function(el) { //Percorre todos os métodos habilitando o button "O que é?" para as divConceito existente
+    var nome_metodo = el.getAttribute('data-target');
+    metodos.push(nome_metodo); //preenche o array com métodos existentes
+    //inicio
+    var children = el.querySelectorAll('.oculto');//busca todos as tag com class ocultar
+    //verifica se existe a div conceito do método   
+    bio_conceito = divConceito.querySelector("." + nome_metodo); 
+    if(bio_conceito){ //Se encontrou uma div com bio-conceito, deixa "O que é? " visível
+        children.forEach(function(child) {
+            child.classList.remove('oculto');
+        })
+    }    
+});
+
+
+console.log("metodos",metodos);
 pratique.forEach(function(el) {
     el.addEventListener('click', function() {
     // Encontra a div pai mais próximo
@@ -8,8 +29,8 @@ pratique.forEach(function(el) {
     // Obtém o valor do atributo data-target
     var targetId = parentDiv.attr('data-target');
         $('#compilador').data('code', targetId);
-        let titulo = $("#myModal .modal-title").html();
-        $("#myModal .modal-title").html(titulo + " ( " + targetId +" )");
+        
+        $("#myModal #nome_metodo").html(" ( " + targetId +" )");
         
         ide = document.getElementById("ide"); // Recebe o elemento textArea do código
         ide.value += "\n";
@@ -33,13 +54,18 @@ pratique.forEach(function(el) {
         var metodo = conceito.find("." + targetId); //Busca na div conceito a div específica do método
         // Obtém o conteúdo HTML da div filha
         var metodoContent = metodo.html();
-        $("#bio").html(metodoContent);
+        if(undefined == metodoContent){
+            $("#bio").html("<h5 class='text-primary'>Contexto em implementação</h5>");    
+        }else{
+           $("#bio").html(metodoContent);
+        }
         $('#bioModal').modal('show');
     });
  });
  //execute o código em Python
  document.getElementById('run').addEventListener('click', function() {
     //alert('Cliquei em: ' + this.textContent);
+    document.getElementById('result').innerHTML = "<pre>...</pre>";    
     var codigo = document.getElementById('ide').value;
     fetch('/execute', {
         method: 'POST',
@@ -91,9 +117,6 @@ dicas.forEach(function(dica) {
         $(this).prop('disabled', true);
     });
 });
-
-
-
 
  let codigo = {
     get_seqs : ["seq = Bioprof()","print(seq.get_seqs())","\n#clique no botão Executar"],

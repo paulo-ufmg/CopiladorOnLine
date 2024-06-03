@@ -71,7 +71,7 @@ body {
 }
 
 .separator {
-  margin: 3rem 0;
+  margin: 1rem 0;
   border-bottom: 1px dashed #4b01f8;
 }
 
@@ -98,4 +98,8 @@ body {
 .bio {
   margin-left: 80px;
   cursor: pointer;
-}
+ }
+
+ .oculto{
+  display: none;
+ }

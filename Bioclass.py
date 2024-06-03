@@ -67,6 +67,7 @@ class Bioprof:
         if busca in self.info:
             return self.info[busca]
         else: self.message_view("Sequencia não possui comentário!")   
+        return []
         
         
     def get_tamanho_sequencia(self,arg): #permite receber como paramentro um inteiro que é o indice ou uma string id que é a identificação da sequencia
@@ -151,15 +152,15 @@ class Bioprof:
                     
     def ver_info_seq(self,arg):
         """Exibe dados de uma sequência"""
-        if(self.seq_existe(id)):
+        if(self.seq_existe(arg)):
             indice = arg if (isinstance(arg, int)) else self.ids.index(arg)
             print("Informações da sequência:")
             print("=========================")
             print(f"Id: {self.ids[indice]}")
-            print(f"Sequencia de {self.get_tipo_seq(id)}")
+            print(f"Sequencia de {self.get_tipo_seq(arg)}")
             if(indice in self.info ):
                 print(f"Info: {self.info[indice]}")
-            print(f"Composição: {self.get_composicao_seq(id)}")
+            print(f"Composição: {self.get_composicao_seq(arg)}")
                 #print(f"Q(n): A({self.composicao_total[indice]['A']}),C({self.composicao_total[indice]['C']}),G({self.composicao_total[indice]['G']}),T({self.composicao_total[indice]['T']}),U({self.composicao_total[indice]['U']})")
             print(f"Tamanho sequencia: {self.get_tamanho_sequencia(indice)}")
             print("Percentual de GC: {:.2f} %".format(self.get_percentual_GC(indice)))
@@ -171,7 +172,7 @@ class Bioprof:
 
         else:
             self.message_view("Sequencia não encontrada!")   
-       
+        return ""
     def identifica_id(self,line):
         """Retorna a string de identificação da sequência (id)"""
         match = re.match(r'^>(\S+)', line)

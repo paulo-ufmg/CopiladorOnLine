@@ -1,0 +1,75 @@
+>def get_seqs(self):
+Retorna a lista de <b>sequencias</b> registradas
+
+>def adiciona_seq(self,n1,n2,n3):
+Insere uma sequência através de código
+#n1 - string com a identificação da sequência
+#n2 - string com informações sobre a sequência
+#n3 - srting da seqUencia
+
+>def leiaArquivoFasta(self,nome_arquivo):
+Lê  todas as sequências de um <b>arquivo Fasta</b>
+
+>def seq_existe (self,arg):
+Retorna verdadeiro se a sequencia identificada em argumento está registrada
+    
+>def get_info(self,arg):
+Retorna comentário da sequencia
+        
+>def get_tamanho_sequencia(self,arg): 
+Soma a quantidade nucleotideos ou aminoácidos de uma sequencia
+#permite receber como paramentro um inteiro que é o indice ou uma string id que é a identificação da sequencia
+      
+>def get_sequencia(self,arg):
+Retorna a sequencia armazenada com seus nucleotídeos (DNA e RNA) ou dos aminoácidos (Proteina)
+    
+>def get_composicao_seq(self,arg):
+Retorna a composição da sequência com os totais de nucleotídeos (DNA e RNA) ou dos aminoácidos (Proteina) 
+
+>def get_tipo_seq(self,arg,sequencia = None):
+Identifica uma sequencia se é de DNA, RNA ou PROTEINA
+    
+>def get_percentual_GC(self,arg):
+Retorna a percentual(%) de Guanina e Citosina na sequência.
+
+>def insert_comment(self,arg,info):
+Armazena o comentário da sequência
+
+>def ver_info_seq(self,arg):
+Exibe dados de uma sequência
+
+>def remove_seq(self,arg):
+Remove uma sequência usando o id da sequencia o index armazenado em ids
+
+>def dH(self,id1,id2):
+Retorna a distância de Hamming (dH) entre duas sequências
+    
+>def rna2proteina(self,arg):
+Traduz uma sequência de mRNA em PROTEINA
+        
+>def transc_dna2rna(self,arg):
+Transcrição de uma sequência de DNA em um mRNA -Substitui todas as ocorrências de T por U 
+        
+>def get_kmers(self,arg,k):
+Retorna uma lista de sequencias k da janela deslizante da sequência
+#arg: A sequência de entrada (string)
+#k: O comprimento dos k-mers (inteiro)
+:retorno: Uma lista de k-mers
+        
+>def matriz_d(self):
+Calcula a matriz de distância para sequências de proteínas. 
+
+>def compara_genomas(self,id1,id2):
+Compara dois genomas e retorna a porcentagem de diferenças
+    
+>def reverso_complementar(self,arg):
+Retorna o reverso complementar de uma sequência de DNA
+ 
+>def busca_cds(self,arg,codon_start):
+Busca na sequências os segmentos codificantes no genoma. Se a fita é um DNA, encontra também no reverso complementar e traduz em proteina
+#arg: Identificação da sequência na biblioteca do objeto
+string: Representa o nome de identificação da sequência na biblioteca do Objeto.
+inteiro: Representa o índice da sequência na Biblioteca do Objeto.      
+#codon_start: Códon de inicia da sequência.
+
+   
