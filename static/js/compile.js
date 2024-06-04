@@ -24,16 +24,19 @@ divMetodos.forEach(function(el) { //Percorre todos os métodos habilitando o but
 console.log("metodos",metodos);
 pratique.forEach(function(el) {
     el.addEventListener('click', function() {
-    // Encontra a div pai mais próximo
-    var parentDiv = $(this).closest('div');
-    // Obtém o valor do atributo data-target
-    var targetId = parentDiv.attr('data-target');
+        // Encontra a div pai mais próximo
+        var parentDiv = $(this).closest('div');
+        // Obtém o valor do atributo data-target
+        var targetId = parentDiv.attr('data-target');
+        alert(targetId);
         $('#compilador').data('code', targetId);
-        
         $("#myModal #nome_metodo").html(" ( " + targetId +" )");
-        
         ide = document.getElementById("ide"); // Recebe o elemento textArea do código
-        ide.value += "\n";
+        ide.value = "from Bioclass import Bioprof" + "\n";
+        document.getElementById('result').innerHTML = "<pre>Resultado&raquo;</pre>"; //Limpa o terminal de resultados
+        dicas.forEach(function(dica) {  //Habilita os botões de dicas
+                $(dica).prop('disabled', false);
+        });       
         $('#myModal').modal('show');
         /*usando vanila
         var myModal = document.getElementById('myModal');
@@ -104,6 +107,12 @@ document.getElementById('limpa_ide').addEventListener('click', function() {
     document.getElementById("result").innerHTML = "<span class='text-success'>Resultado&raquo;</span>"
 });
 
+//Recarrega a página ao clicar no botão a esquerda da página logo Bioclass
+document.getElementById('logo').addEventListener('click', function() {
+    alert(1)
+    window.location = window.location.href;
+});
+
 dicas.forEach(function(dica) {
     dica.addEventListener('click', function() {
         // Busca a targetId da IDE clicada 
@@ -119,9 +128,9 @@ dicas.forEach(function(dica) {
 });
 
  let codigo = {
-    get_seqs : ["seq = Bioprof()","print(seq.get_seqs())","\n#clique no botão Executar"],
-    adiciona_seq : ["seq = Bioprof()","seq.adiciona_seq('Genoma1','informação do genoma','ATGCGTAACGTTAGC')","print(seq.get_seqs())","\n#clique no botão Executar",""],
-    leiaArquivoFasta:  ["seq = Bioprof()","seq.leiaArquivoFasta('sequencia_dna.fasta')","print(seq.get_seqs())","\n#clique no botão Executar"]
-    
+    get_seqs : ["obj = Bioprof()","print(obj.get_seqs())","\n#clique no botão Executar"],
+    adiciona_seq : ["obj = Bioprof()","obj.adiciona_seq('Genoma1','informação do genoma','ATGCGTAACGTTAGC')","print(obj.get_seqs())","\n#clique no botão Executar",""],
+    leiaArquivoFasta:  ["obj = Bioprof()","obj.leiaArquivoFasta('sequencia_dna.fasta')","print(obj.get_seqs())","\n#clique no botão Executar"],
+    seq_existe:  ["obj = Bioprof()","if(obj.seq_existe('Rosalind_000')): print('Sequência existe na biblioteca!')","else: print('Sequência não encontrada!')","\n#clique no botão Executar"]
  }
  

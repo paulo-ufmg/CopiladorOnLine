@@ -21,7 +21,7 @@
     <body> <!-- class="bg-light text-dark"-->
         <div class="vertical-nav bg-white" id="sidebar">
           <div class="py-4 px-3 mb-4 bg-light">
-            <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+            <div id="logo" class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
               <div class="media-body">
                 <h4 class="m-0">Bioclass Help</h4>
                 <p class="font-weight-light text-muted mb-0">Bioinformática</p>
@@ -56,6 +56,15 @@
                         Métodos
                     </a>
             </li>
+            <li class="nav-item">
+              <a href="#chaining" class="nav-link text-dark font-italic">
+                        <i class="fa fa-link mr-3 text-primary fa-fw"></i>
+                        Chaining
+                    </a>
+            </li>
+
+
+
           </ul>
 
           <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Fundamentos </p>
@@ -314,6 +323,63 @@
                 <div class="separator"></div> 
               {% endfor %}
           </section>
+          <section id="chaining" class="section mb-5">
+              <h2 class=" text-primary">Técnica Chaining <small class="text-info"><i class="fa fa-link mr-3 text-primary fa-fw"></i> ( encadeamento de métodos )</small></h2>
+              <p>A técnica de <strong>chaining</strong> (ou encadeamento) é uma prática comum em programação, onde você pode chamar múltiplos métodos em uma única linha de código. Essa técnica permite que você execute várias operações sequencialmente sem precisar escrever código adicional para armazenar o valor intermediário.</p>
+              <strong>Característica</strong>
+              <ul><li>Sintaxe Compacta</li>
+                  <li>Leitura Fluida</li>
+                  <li>Eficiência</li>
+                </ul>
+              <p>Na construção da classe filha "Encadear" implementa essa técncia e aproveita para demontrar o fundamento de herança do paradigma orientado a objeto</p>
+
+              <div class="card-body bg-dark text-light m-5">
+              <pre class="pre-scrollable text-light"><code>
+class encadear(Bioprof):
+    """ Classe demonstra técnica de modelamento de métodos em cascada ( Técnica chanining ) """                
+
+    def __init__(self):
+        super().__init__()
+        self.id = id
+        self.retorno = ""
+    #-------------------------------------    
+    def dna(self,arg):
+        self.seq = arg
+        if self.seq_existe(self.seq):
+            self.retorno = self.get_sequencia(self.seq)
+        else: self.message_view("Sequencia não encontrada!",True)   
+        return self
+    #-------------------------------------    
+    def rm_introns(self,*args):
+        for arg in args:
+            if isinstance(arg, str):
+                self.retorno = re.sub(arg, "", self.retorno)
+        return self
+    #-------------------------------------    
+    def transcreve(self):
+        self.adiciona_seq("Transcricao00x2","Sequencia armazenada temporáriamente",self.retorno)
+        self.retorno = self.transc_dna2rna("Transcricao00x2")
+        self.remove_seq("Transcricao00x2")
+        return self
+    #-------------------------------------    
+    def traduz(self):
+        self.adiciona_seq("Traducao00x1","Sequencia armazenada temporáriamente",self.retorno)
+        self.retorno = self.rna2proteina("Traducao00x1")
+        self.remove_seq("Traducao00x1")
+        return self
+    #-------------------------------------    
+    def imprime(self):
+        print(self.retorno)
+        return self
+    #-------------------------------------    
+    def get(self):
+        return self.retorno
+    #=====================================    
+                   </code>
+              </pre>
+            </div>
+
+          </section>  
 
           <section id="encapsulamento"    class="section"><h2>Encapsulamento</h2>
             <p>O encapsulamento refere-se ao agrupamento de dados (atributos) e métodos (funções ou procedimentos) que operam sobre esses dados em uma única unidade chamada objeto. Esse princípio promove a ocultação de informações, restringindo o acesso direto aos dados do objeto e expondo apenas o que é necessário através de métodos públicos. Isso ajuda a proteger a integridade dos dados e a reduzir a dependência entre diferentes partes de um programa.</p>

@@ -558,3 +558,44 @@ class Bioprof:
 
     def get(self):
         return self.retorno_chaining
+
+
+class encadear(Bioprof):
+    """ Classe demonstra técnica de modelamento de métodos em cascada ( chanining)"""
+
+    def __init__(self):
+        super().__init__()
+        self.id = id
+        self.retorno = ""
+        
+    def dna(self,arg):
+        self.seq = arg
+        if self.seq_existe(self.seq):
+            self.retorno = self.get_sequencia(self.seq)
+        else: self.message_view("Sequencia não encontrada!",True)   
+        return self
+
+    def rm_introns(self,*args):
+        for arg in args:
+            if isinstance(arg, str):
+                self.retorno = re.sub(arg, "", self.retorno)
+        return self
+    
+    def transcreve(self):
+        self.adiciona_seq("Transcricao00x2","Sequencia armazenada de forma temporária para calculo de transcrição",self.retorno)
+        self.retorno = self.transc_dna2rna("Transcricao00x2")
+        self.remove_seq("Transcricao00x2")
+        return self
+    
+    def traduz(self):
+        self.adiciona_seq("Traducao00x1","Sequencia armazenada de forma temporária para calculo de transcrição",self.retorno)
+        self.retorno = self.rna2proteina("Traducao00x1")
+        self.remove_seq("Traducao00x1")
+        return self
+
+    def imprime(self):
+        print(self.retorno)
+        return self
+
+    def get(self):
+        return self.retorno
