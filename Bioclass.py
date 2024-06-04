@@ -37,7 +37,7 @@ class Bioprof:
             "CAG": "Q","AAU": "N", "AAC": "N", "AAA": "K", "AAG": "K","GAU": "D", "GAC": "D", "GAA": "E", "GAG": "E","UGU": "C", "UGC": "C", "UGA": "*", "UGG": "W",
             "CGU": "R", "CGC": "R", "CGA": "R", "CGG": "R","AGU": "S", "AGC": "S", "AGA": "R", "AGG": "R","GGU": "G", "GGC": "G", "GGA": "G", "GGG": "G"           
         }
-       self.retorno_chaining = "" #usando para armazenar sequencia em utilização de métodos em cascata
+       self.aux_chaining = "" #usando para armazenar sequencia em utilização de métodos em cascata
 
     def verificar_biblioteca(self,biblioteca):
         if importlib.util.find_spec(biblioteca) is None:
@@ -528,74 +528,74 @@ class Bioprof:
     #***************************************************************
     def dna(self,arg,sequencia = None):
         if self.seq_existe(arg) or sequencia != None: #prossegue para uma sequencia válida
-            self.retorno_chaining = self.get_sequencia(arg) if(sequencia == None) else sequencia
+            self.aux_chaining = self.get_sequencia(arg) if(sequencia == None) else sequencia
         else: self.message_view("Sequencia não encontrada!",True)   
         return self
 
     def rm_introns(self,*args):
         for arg in args:
             if isinstance(arg, str):
-                self.retorno_chaining = re.sub(arg, "", self.retorno_chaining)
+                self.aux_chaining = re.sub(arg, "", self.aux_chaining)
         return self
     
     def transcreve(self):
-        if(len(self.retorno_chaining)>0): #processa se somente de existir uma sequencia
-            self.adiciona_seq("Transcricao00x2","Sequencia armazenada de forma temporária para calculo de transcrição",self.retorno_chaining)
-            self.retorno_chaining = self.transc_dna2rna("Transcricao00x2")
+        if(len(self.aux_chaining)>0): #processa se somente de existir uma sequencia
+            self.adiciona_seq("Transcricao00x2","Sequencia armazenada de forma temporária para calculo de transcrição",self.aux_chaining)
+            self.aux_chaining = self.transc_dna2rna("Transcricao00x2")
             self.remove_seq("Transcricao00x2")
         return self
     
     def traduz(self):
-        if(len(self.retorno_chaining)>0): #processa se somente de existir uma sequencia
-            self.adiciona_seq("Traducao00x1","Sequencia armazenada de forma temporária para calculo de transcrição",self.retorno_chaining)
-            self.retorno_chaining = self.rna2proteina("Traducao00x1")
+        if(len(self.aux_chaining)>0): #processa se somente de existir uma sequencia
+            self.adiciona_seq("Traducao00x1","Sequencia armazenada de forma temporária para calculo de transcrição",self.aux_chaining)
+            self.aux_chaining = self.rna2proteina("Traducao00x1")
             self.remove_seq("Traducao00x1")
         return self
 
     def imprime(self):
-        print(self.retorno_chaining)
+        print(self.aux_chaining)
         return self
 
     def get(self):
-        return self.retorno_chaining
+        return self.aux_chaining
 
 
-class encadear(Bioprof):
+class Encadear(Bioprof):
     """ Classe demonstra técnica de modelamento de métodos em cascada ( chanining)"""
 
     def __init__(self):
         super().__init__()
-        self.id = id
-        self.retorno = ""
-        
-    def dna(self,arg):
-        self.seq = arg
-        if self.seq_existe(self.seq):
-            self.retorno = self.get_sequencia(self.seq)
+        self.aux_chaining = ""
+
+    def dna(self,arg,sequencia = None):
+        """Armazena uma sequẽncia para operação de encadeamento"""
+        if self.seq_existe(arg) or sequencia != None: #prossegue para uma sequencia válida
+            self.aux_chaining = self.get_sequencia(arg) if(sequencia == None) else sequencia
         else: self.message_view("Sequencia não encontrada!",True)   
         return self
+      
 
     def rm_introns(self,*args):
         for arg in args:
             if isinstance(arg, str):
-                self.retorno = re.sub(arg, "", self.retorno)
+                self.aux_chaining = re.sub(arg, "", self.aux_chaining)
         return self
     
     def transcreve(self):
-        self.adiciona_seq("Transcricao00x2","Sequencia armazenada de forma temporária para calculo de transcrição",self.retorno)
-        self.retorno = self.transc_dna2rna("Transcricao00x2")
+        self.adiciona_seq("Transcricao00x2","Sequencia armazenada de forma temporária para calculo de transcrição",self.aux_chaining)
+        self.aux_chaining = self.transc_dna2rna("Transcricao00x2")
         self.remove_seq("Transcricao00x2")
         return self
     
     def traduz(self):
-        self.adiciona_seq("Traducao00x1","Sequencia armazenada de forma temporária para calculo de transcrição",self.retorno)
-        self.retorno = self.rna2proteina("Traducao00x1")
+        self.adiciona_seq("Traducao00x1","Sequencia armazenada de forma temporária para calculo de transcrição",self.aux_chaining)
+        self.aux_chaining = self.rna2proteina("Traducao00x1")
         self.remove_seq("Traducao00x1")
         return self
 
     def imprime(self):
-        print(self.retorno)
+        print(self.aux_chaining)
         return self
 
     def get(self):
-        return self.retorno
+        return self.aux_chaining

@@ -239,21 +239,36 @@
           </section>
           <section id="atributos" class="section mb-5"><h2>Atributos</h2>
             <img src="{{ url_for('static', filename='img/bioprof_logo.png') }}" class="img-fluid  mr-3 mb-3" width="360" alt="Example Icon">
-            <p>Basicamente os atributos da classe Bioprof são os de armazenamento dos dados da sequência que resume em:</p>
-            <ul>
-              <li>Lista de string para identificação da sequência (list(ids))
-                <strong class="d-block">self.ids = []</strong>
-              </li>
-              <li>Dicionário para informação complementar da sequência (dict(info))
-                <strong class="d-block">self.info ={}</strong>
-              </li>
-              <li>Lista de string com os nucleotídeos ou aminoácidos da sequência (list(sequencia))
-                <strong class="d-block">sequencia</strong>
-              </li>
-              <li>Lista de dicionário com a composição da sequencia com quantidade de componentes (list(dict(sequencia)))
-                <strong class="d-block">composicao_total = []</strong>
-              </li>
-            </ul>
+            <div class="row">
+              <div class="col-8">
+                  <p>Basicamente os atributos da classe Bioprof são os de armazenamento dos dados da sequência que resume em:</p>
+                  <ul>
+                    <li>Lista de string para identificação da sequência (list(ids))
+                      <strong class="d-block">self.ids = []</strong>
+                    </li>
+                    <li>Dicionário para informação complementar da sequência (dict(info))
+                      <strong class="d-block">self.info ={}</strong>
+                    </li>
+                    <li>Lista de string com os nucleotídeos ou aminoácidos da sequência (list(sequencia))
+                      <strong class="d-block">sequencia</strong>
+                    </li>
+                    <li>Lista de dicionário com a composição da sequencia com quantidade de componentes (list(dict(sequencia)))
+                      <strong class="d-block">composicao_total = []</strong>
+                    </li>
+                  </ul>
+
+              </div>
+              <div class="col-4">
+                <p>Diagrama de classe para Encadear</p>
+                <img src="{{ url_for('static', filename='img/diagram_classe_encadear.png') }}" class="img-fluid" alt="Diagrama de classe">
+
+
+              </div>
+
+
+            </div>
+            
+            
             <strong class="m=3">Visualização de armazenamento da biblioteca</strong>
             
             
@@ -335,18 +350,18 @@
 
               <div class="card-body bg-dark text-light m-5">
               <pre class="pre-scrollable text-light"><code>
-class encadear(Bioprof):
+
+class Encadear(Bioprof):
     """ Classe demonstra técnica de modelamento de métodos em cascada ( Técnica chanining ) """                
 
     def __init__(self):
         super().__init__()
-        self.id = id
         self.retorno = ""
     #-------------------------------------    
-    def dna(self,arg):
-        self.seq = arg
-        if self.seq_existe(self.seq):
-            self.retorno = self.get_sequencia(self.seq)
+    def dna(self,arg,sequencia = None):
+        """Armazena uma sequẽncia para operação de encadeamento"""
+        if self.seq_existe(arg) or sequencia != None: #prossegue para uma sequencia válida
+            self.retorno_chaining = self.get_sequencia(arg) if(sequencia == None) else sequencia
         else: self.message_view("Sequencia não encontrada!",True)   
         return self
     #-------------------------------------    

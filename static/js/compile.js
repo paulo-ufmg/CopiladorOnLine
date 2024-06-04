@@ -28,7 +28,7 @@ pratique.forEach(function(el) {
         var parentDiv = $(this).closest('div');
         // Obtém o valor do atributo data-target
         var targetId = parentDiv.attr('data-target');
-        alert(targetId);
+        //alert(targetId);
         $('#compilador').data('code', targetId);
         $("#myModal #nome_metodo").html(" ( " + targetId +" )");
         ide = document.getElementById("ide"); // Recebe o elemento textArea do código
@@ -131,6 +131,10 @@ dicas.forEach(function(dica) {
     get_seqs : ["obj = Bioprof()","print(obj.get_seqs())","\n#clique no botão Executar"],
     adiciona_seq : ["obj = Bioprof()","obj.adiciona_seq('Genoma1','informação do genoma','ATGCGTAACGTTAGC')","print(obj.get_seqs())","\n#clique no botão Executar",""],
     leiaArquivoFasta:  ["obj = Bioprof()","obj.leiaArquivoFasta('sequencia_dna.fasta')","print(obj.get_seqs())","\n#clique no botão Executar"],
-    seq_existe:  ["obj = Bioprof()","if(obj.seq_existe('Rosalind_000')): print('Sequência existe na biblioteca!')","else: print('Sequência não encontrada!')","\n#clique no botão Executar"]
+    seq_existe:  ["obj = Bioprof()","if(obj.seq_existe('Rosalind_000')): print('Sequência existe na biblioteca!')","else: print('Sequência não encontrada!')","\n#clique no botão Executar"],
+    dna: ["from Bioclass import Encadear\nobj2 = Encadear()\nobj2.adiciona_seq('dna','teste','ATGCGTACCTGACGCTAGCTAGCTAGGCTAGCTAGCCTAGGCTAACG')\nobj2.dna(0).imprime()",
+          "obj2.dna(0).rm_introns('TAG').imprime()\nobj2.dna(0).rm_introns('TAG').transcreve().imprime()",
+          "obj2.dna(0).transcreve().traduz().imprime()"
+          ]
  }
  

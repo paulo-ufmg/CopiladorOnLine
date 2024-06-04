@@ -72,4 +72,8 @@ string: Representa o nome de identificação da sequência na biblioteca do Obje
 inteiro: Representa o índice da sequência na Biblioteca do Objeto.      
 #codon_start: Códon de inicia da sequência.
 
-   
+>def dna(self,arg,sequencia = None):
+Armazena uma sequẽncia para operação de encadeamento
+Recebe até dois argumentos:
+#arg: Referência a uma sequência da biblioteca ou
+#sequencia: string de uma sequência (opcional) 
