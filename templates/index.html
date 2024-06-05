@@ -240,7 +240,7 @@
           <section id="atributos" class="section mb-5"><h2>Atributos</h2>
             <img src="{{ url_for('static', filename='img/bioprof_logo.png') }}" class="img-fluid  mr-3 mb-3" width="360" alt="Example Icon">
             <div class="row">
-              <div class="col-8">
+              <div class="col-7">
                   <p>Basicamente os atributos da classe Bioprof são os de armazenamento dos dados da sequência que resume em:</p>
                   <ul>
                     <li>Lista de string para identificação da sequência (list(ids))
@@ -250,17 +250,17 @@
                       <strong class="d-block">self.info ={}</strong>
                     </li>
                     <li>Lista de string com os nucleotídeos ou aminoácidos da sequência (list(sequencia))
-                      <strong class="d-block">sequencia</strong>
+                      <strong class="d-block">sequencia = []</strong>
                     </li>
                     <li>Lista de dicionário com a composição da sequencia com quantidade de componentes (list(dict(sequencia)))
-                      <strong class="d-block">composicao_total = []</strong>
+                      <strong class="d-block">composicao_total = [] </strong>#{"A":x,"T":y,"C":z,"G":t} nucleotídeos ou aminoácidos
                     </li>
                   </ul>
 
               </div>
-              <div class="col-4">
-                <p>Diagrama de classe para Encadear</p>
-                <img src="{{ url_for('static', filename='img/diagram_classe_encadear.png') }}" class="img-fluid" alt="Diagrama de classe">
+              <div class="col-4 offset-1">
+                <p>Diagrama de classe</p>
+                <img src="{{ url_for('static', filename='img/diagram_classe_bioprof.png') }}" class="img-fluid" alt="Diagrama de classe">
 
 
               </div>
@@ -528,6 +528,79 @@ class Encadear(Bioprof):
     <p>*Oligonucleotídeos: São sequências de DNA ou RNA sintéticas usadas em várias aplicações laboratoriais e geralmente têm de 15 a 100 nucleotídeos.</p>
 
   </div>
+  <!-- -------------------------------------------  -->
+  <div class="transc_dna2rna">
+			<p>A transcrição de uma sequência de DNA envolve uma série de eventos biológicos que convertem a informação genética de um gene em uma molécula de RNA mensageiro (mRNA). Este processo é realizado pelas células para expressar genes e produzir proteínas necessárias para várias funções celulares.</p>
+			<b>Componentes Principais:</b>
+      <ul>
+        <li><b>DNA</b> -<small> A molécula que contém a informação genética.</small>:</li>
+        <li><b>RNA Polimerase</b> -<small> A enzima responsável pela síntese do RNA.</small></li>
+        <li><b>Promotores</b> -<small> Sequências de DNA que sinalizam o início de um gene.</small></li> 
+        <li><b>Terminadores</b> -<small> Sequências de DNA que sinalizam o fim do gene.</small></li>
+        <li><b>Fatores de Transcrição</b> -<small> Proteínas que auxiliam na ligação da RNA polimerase ao DNA.</small></li>
+    </ul>
+    <p>A complementaridade de bases garante que a sequência de RNA seja uma cópia precisa da sequência de DNA, com algumas exceções específicas:</p>
+      <ul>
+       <li>Adenina (<b>A</b>) no DNA pareia com uracila (<b>U</b>) no RNA.</li>
+       <li>Timina (<b>T</b>) no DNA pareia com adenina (<b>A</b>) no RNA.</li>
+       <li>Citosina (<b>C</b>) no DNA pareia com guanina (<b>G</b>) no RNA.</li>
+       <li>Guanina (<b>G</b>) no DNA pareia com citosina (<b>C</b>) no RNA.</li>
+      </ul>
+    <p>O mRNA maduro é então transportado do núcleo para o citoplasma (em eucariotos) onde será traduzido em uma sequência de aminoácidos para formar uma proteína funcional. A transcrição é um processo fundamental que garante que a informação genética contida no DNA seja fielmente transferida e utilizada para a síntese de proteínas essenciais à vida.</p>
+  </div>
+  
+  <!-- -------------------------------------------  -->
+  <div class="reverso_complementar">
+    <p>O reverso complementar de uma sequência de DNA é crucial para muitas aplicações em biologia molecular e genética. Ele garante que a sequência de DNA possa ser corretamente lida e manipulada em diversas técnicas laboratoriais. Compreender como determinar e utilizar sequências reverso complementares é essencial para a pesquisa e prática na área das ciências da vida. Um exemplo é a técnica PCR (Reação em Cadeia da Polimerase) e clonagem de genes, dependem de sequências reverso complementares.</p>
+      <p>Para obter o reverso complementar segue dois passos:</p>
+      <ul>
+        <li>Sequência exemplo: [<strong>ATTACGGC</strong>]</li>
+        <li><b>Passo1:</b> Encontrar a sequência complementar do DNA = [<strong>TAATGCCG</strong>]</li>
+        <li><b>Passo2:</b> Inverter essa sequência complementar = [<strong>GCCGTAAT</strong>]</p></li>
+    </ul>
+  </div>
+  <!-- -------------------------------------------  -->
+    <div class="rna2proteina">
+      <p>A tradução de uma sequência de DNA é o processo pelo qual a informação codificada no mRNA (RNA mensageiro) é utilizada para sintetizar uma proteína, as instruções genéticas contidas no DNA são convertidas em uma sequência de aminoácidos que forma uma proteína funcional.</p>
+        <p>Uma sequência de três nucleotídeos no RNA mensageiro (mRNA) (<b>códon</b>) especifica um aminoácido particular ou uma sinalização para iniciar ou terminar a síntese proteica.</p>
+        <b>Função dos Códons na Tradução:</b>
+        <ul>
+          <li><b>Iniciação:</b> O códon de iniciação, geralmente <b>AUG</b>, sinaliza o início da tradução e também codifica o aminoácido metionina.</li>
+          <li><b>Elongação:</b> Durante a elongação, cada códon na sequência de mRNA especifica a adição de um aminoácido à cadeia polipeptídica crescente. O ribossomo lê os códons um de cada vez e, com a ajuda de tRNAs (RNA de transferência), adiciona os aminoácidos correspondentes.</li>
+          <li><b>Término:</b> Códons de terminação (<b>UAA</b>, <b>UAG</b> e <b>UGA</b>) sinalizam o final da tradução, indicando ao ribossomo que a síntese da proteína deve ser encerrada.</li>
+      </ul>
+      <p>As proteínas desempenham funções vitais nas células, incluindo enzimáticas, estruturais, regulatórias e muitas outras, sustentando a vida e a função celular.</p>
+    </div>
+    <!-- -------------------------------------------  -->
+      <div class="dH">
+        <p>A distância de Hamming é uma medida da diferença entre duas sequências de igual comprimento. Ela é usada para quantificar o número de posições em que os símbolos correspondentes são diferentes entre as duas sequências. Em termos de biologia molecular, a distância de Hamming é frequentemente utilizada para comparar sequências de DNA, RNA ou proteínas.</p>
+          
+          <b>Utilização:</b>
+          <ul>
+            <li><strong>Análise de Mutação</strong></li>
+            <li><strong>Comparação de Sequências Genômicas</strong></li>
+            <li><strong>Avaliação de Sequenciamento</strong></li>
+            <li><strong>Identificação de Polimorfismos de Nucleotídeo Único (SNPs)</strong></li>
+        </ul>
+        <p>A distância de Hamming é uma medida simples de diferença entre sequências, mas pode não refletir a complexidade de todas as possíveis mutações ou variações.</p><p>É importante garantir que as duas sequências sendo comparadas tenham o mesmo comprimento, já que a distância de Hamming não é definida para sequências de comprimentos diferentes.</p>
+      </div>
+<!-- -------------------------------------------  -->
+<div class="nome_do_metodo">
+  <p></p>
+    <p></p>
+    <b>Exemplo:</b>
+    <ul>
+      <li></li>
+      <li></li>
+  </ul>
+  <p>Conclusão.</p>
+</div>
+<!-- -------------------------------------------  -->
+
+
+
+
+
 </div>
         
 </body>

@@ -85,7 +85,7 @@ def execute():
     code = data['code']
     
     try:
-        result = subprocess.run(['python3', '-c', code], capture_output=True, text=True)
+        result = subprocess.run(['python', '-c', code], capture_output=True, text=True)
         output = result.stdout.strip()
         return jsonify({'output': output})
     except Exception as e:

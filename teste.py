@@ -1,5 +1,12 @@
-from Bioclass import Encadear
-obj2 = Encadear()
-obj2.adiciona_seq('dna','teste','ATGCGTACCTGACGCTAGAGCTAGCCTAGGCTAACG')
-print( obj2.get_seqs() )
-#obj2.dna(0).imprime()
+seq = "ATTACGGC"
+complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+
+
+complementary_sequence = ''.join(complement[base] for base in seq)
+    
+    # Reverter a sequência complementar
+reverse_complementary_sequence = complementary_sequence[::-1]
+print(seq)    
+print(complementary_sequence)
+print(reverse_complementary_sequence)
+
