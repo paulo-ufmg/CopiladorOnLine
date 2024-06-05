@@ -311,8 +311,10 @@ class Bioprof:
         return None
     
     #--------------------------------------------------------------------------    
+    #______________________________________________________________  
+    #def matriz_d(self, filename):
     def matriz_d(self):
-        """Calcula a matriz de distância para sequências de proteínas. """
+        """Calcula a matriz de distância para sequências de proteínas."""
         bibliotecas = ['numpy', 'blosum','matplotlib.pyplot','seaborn','scipy.cluster.hierarchy'] # Lista de bibliotecas necessárias
         for biblioteca in bibliotecas: # Verificar cada biblioteca
             if not self.verificar_biblioteca(biblioteca):
@@ -325,40 +327,46 @@ class Bioprof:
         import scipy.cluster.hierarchy as sch
 
         self.blosum_matrix = bl.BLOSUM(62) # Define um atributo de instância
-        num_sequences = len(self.ids) 
+
+        #sequences = self.get_fasta_sequences(filename)
+        #num_sequences = len(sequences)
+        num_sequences = len(self.ids)
+
         # Verifica se todas as sequencias são de proteínas
         for i in range(num_sequences):
             # Verifica se o tipo da sequencia é DNA ou RNA
             if self.get_tipo_seq(i) != 'Proteina':
                 self.message_view("Erro: Não é uma sequência de proteínas!", True) 
-                #return # Sai da função se encontrar uma sequência que não seja de proteína
+                return # Sai da função se encontrar uma sequência que não seja de proteína
 
         # Inicializar matriz de distância
         distance_matrix = np.zeros((num_sequences, num_sequences))
 
         # Execute alinhamentos aos pares e preencha a matriz de distância
-        #for i, (name1, seq1) in enumerate(sequences.items()):
+
         for i, seq1 in enumerate(self.ids):
-            #for j, (name2, seq2) in enumerate(sequences.items()):
             for j, seq2 in enumerate(self.ids):
                 if self.ids[i] != self.ids[j]: #se as identificações das sequencias são iguais
-                    #rx_indices, ry_indices, rx_alignment, ry_alignment, scoring_matrix, num_gaps = self.needleman_wunsch_2(seq1, seq2)
+                    #  recebe as sequências self.sequencia[i] e self.sequencia[j] e retorna informações sobre o alinhamento
                     rx_indices, ry_indices, rx_alignment, ry_alignment, scoring_matrix, num_gaps = self.needleman_wunsch_2(self.sequencia[i], self.sequencia[j])
+                    # pega a última linha e última coluna da matriz de score (scoring_matrix).
                     distance_matrix[i,j] = -scoring_matrix[-1,-1]  # Executar alinhamentos aos pares e preencher a matriz de distância
                     
                     # Optional: Imprimir alinhamentos
                     #print(f"Alignment between {name1} and {name2}:")
-                    print(f"Alignment between {self.ids[i]} and {self.ids[j]}:")
+                    #print(f"Alignment between {self.ids[i]} and {self.ids[j]}:")
+                    print(".",end="")
                     print(rx_alignment)
                     #print(ry_alignment)
                     #plot_scoring_matrix(scoring_matrix, rx_indices, ry_indices)  # Optional: Individual plots
 
-        # Execute clustering hierárquico e crie mapa de calor
+        # agrupando os dados de acordo com suas distâncias
         linkage_matrix = sch.linkage(distance_matrix, method='ward')
-        # Execute clustering hierárquico e crie mapa de calor
+        # cria um mapa de calor (heatmap) e dendrogramas (diagramas de árvores)
         clustermap = sns.clustermap(distance_matrix, cmap='coolwarm', row_linkage=linkage_matrix, col_linkage=linkage_matrix)
-        plt.show()  # Mostre o enredo
+        plt.show()  
 
+        #  alinhea duas sequências de aminoácidos, retornando o alinhamento ótimo, a matriz de pontuação e gaps
     def needleman_wunsch_2(self, x, y, gap=1):
         bibliotecas = ['numpy', 'blosum','matplotlib.pyplot','seaborn','scipy.cluster.hierarchy'] # Lista de bibliotecas necessárias
         for biblioteca in bibliotecas: # Verificar cada biblioteca
@@ -369,15 +377,16 @@ class Bioprof:
         import matplotlib.pyplot as plt
         import seaborn as sns
         import scipy.cluster.hierarchy as sch
-        scoring_matrix = self.calculate_scoring_matrix_2(x, y, gap)
-        rx_indices, ry_indices, num_gaps = self.traceback_2(scoring_matrix, x, y,gap)
+        scoring_matrix = self.calculate_scoring_matrix_2(x, y, gap) # calcula a matriz de pontuação para o alinhamento de sequências
+        rx_indices, ry_indices, num_gaps = self.traceback_2(scoring_matrix, x, y,gap) #  para encontrar o alinhamento ótimo.
 
-        rx_alignment = ''.join([x[i - 1] if i > 0 else '-' for i in rx_indices])
-        ry_alignment = ''.join([y[j - 1] if j > 0 else '-' for j in ry_indices])
+        rx_alignment = ''.join([x[i - 1] if i > 0 else '-' for i in rx_indices]) # Constrói o alinhamento para a primeira sequência (x) 
+        ry_alignment = ''.join([y[j - 1] if j > 0 else '-' for j in ry_indices]) # Constrói o alinhamento para a segunda sequência (y)
 
-        return rx_indices, ry_indices, rx_alignment, ry_alignment, scoring_matrix, num_gaps
+        return rx_indices, ry_indices, rx_alignment, ry_alignment, scoring_matrix, num_gaps # A função retorna os resultados do alinhamento
 
-    def traceback_2(self, scoring_matrix, x, y, gap=-5):  # PENALIDADE DE GAPS
+        # traceback_2: retorna os índices do alinhamento e a contagem de gaps (Use scoring_matrix)
+    def traceback_2(self, scoring_matrix, x, y, gap=1):  
         import numpy as np
         import blosum as bl
         import matplotlib.pyplot as plt
@@ -388,30 +397,32 @@ class Bioprof:
         i, j = len(x), len(y)
         rx, ry = [], []
         gap_count = 0
-        while i > 0 or j > 0:
+        while i > 0 or j > 0: # itera até que todas as posições das sequências tenham sido processadas
+            # aminoácidos correspondentes aos índices i e j das sequências
             amino_acid_x = x[i - 1]
             amino_acid_y = y[j - 1]
-           
-            
+            #Verifica se o valor atual na matriz de pontuação (scoring_matrix) obtida da matriz self.blosum_matrix.
+            #  aminoácidos estão alinhados
             if i > 0 and j > 0 and scoring_matrix[i, j] == scoring_matrix[i - 1, j - 1] + (self.blosum_matrix[amino_acid_x][amino_acid_y]): # Use self.blosum_matrix
                 rx.append(i)
                 ry.append(j)
                 i -= 1
                 j -= 1
-            elif i > 0 and scoring_matrix[i, j] == scoring_matrix[i - 1, j] - gap:
+            elif i > 0 and scoring_matrix[i, j] == scoring_matrix[i - 1, j] - gap: # inclui um gap na sequência
                 rx.append(i)
-                ry.append(0) 
+                ry.append(0) # um gap foi introduzido na sequência y
                 i -= 1
                 gap_count += 1
-            else:
-                rx.append(0)
+            else: 
+                rx.append(0) # gap foi introduzido na sequência x
                 ry.append(j)
                 j -= 1
                 gap_count += 1
 
-        return rx[::-1], ry[::-1], gap_count
+        return rx[::-1], ry[::-1], gap_count  # índices do alinhamento ótimo, e a contagem de gaps, após inverter as listas para obter a ordem correta
 
-    def calculate_scoring_matrix_2(self, x, y, gap=1):
+        #  calculate_scoring_matrix_2: calcula a matriz de pontuação para o alinhamento das sequências, usando a matriz BLOSUM
+    def calculate_scoring_matrix_2(self, x, y, gap=1):  # calcula a matriz de pontuação para o alinhamento de duas sequências
         import numpy as np
         import blosum as bl
         import matplotlib.pyplot as plt
@@ -420,26 +431,30 @@ class Bioprof:
 
         nx = len(x)
         ny = len(y)
-
+        # Cria uma matriz de zeros de tamanho (nx + 1, ny + 1) para armazenar a matriz de pontuação
+        # As linhas e colunas extras (nx + 1 e ny + 1) são para gaps 
         scoring_matrix = np.zeros((nx + 1, ny + 1))
-
+        # Inicializa a primeira coluna e a primeira linha da matriz de pontuação (penalidades por gaps)
         scoring_matrix[:, 0] = np.linspace(0, -nx * gap, nx + 1)
         scoring_matrix[0, :] = np.linspace(0, -ny * gap, ny + 1)
-        
+        # iterar sobre cada posição na matriz de pontuação
         for i in range(1, nx + 1):
             for j in range(1, ny + 1):
               amino_acid_x = x[i - 1]
               amino_acid_y = y[j - 1]
 
               if x[i - 1] == y[j - 1]:
+                # definida como a soma da pontuação da posição anterior na diagonal + blosum_matrix
                   scoring_matrix[i, j] = scoring_matrix[i - 1, j - 1] + self.blosum_matrix[amino_acid_x][amino_acid_y] # Use self.blosum_matrix
-              else:
+                # posição atual é definida como o máximo entre três valores:
+              else: 
                   scoring_matrix[i, j] = max(scoring_matrix[i - 1, j] - gap,
                                               scoring_matrix[i, j - 1] - gap,
                                               scoring_matrix[i - 1, j - 1] + self.blosum_matrix[amino_acid_x][amino_acid_y]) # Use self.blosum_matrix
 
         return scoring_matrix
 
+#_____________________________________________________________________________________________  
     #===========================================================================================
     def compara_genomas(self,id1,id2):
         """Compara dois genomas e retorna a porcentagem de diferenças"""

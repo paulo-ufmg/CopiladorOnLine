@@ -134,7 +134,13 @@ dicas.forEach(function(dica) {
     seq_existe:  ["obj = Bioprof()","if(obj.seq_existe('Rosalind_000')): print('Sequência existe na biblioteca!')","else: print('Sequência não encontrada!')","\n#clique no botão Executar"],
     dna: ["from Bioclass import Encadear\nobj2 = Encadear()\nobj2.adiciona_seq('dna','teste','ATGCGTACCTGACGCTAGCTAGCTAGGCTAGCTAGCCTAGGCTAACG')\nobj2.dna(0).imprime()",
           "obj2.dna(0).rm_introns('TAG').imprime()\nobj2.dna(0).rm_introns('TAG').transcreve().imprime()",
-          "obj2.dna(0).transcreve().traduz().imprime()"
-          ]
+          "obj2.dna(0).transcreve().traduz().imprime()"],
+          
+    matriz_d: ["obj = Bioprof()","obj.leiaArquivoFasta('sequencia_proteina.fasta')\nprint(obj.get_seqs())","obj.matriz_d()","" ]
+ 
  }
+
+
+
+
  
