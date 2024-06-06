@@ -355,9 +355,16 @@
                   <li>Leitura Fluida</li>
                   <li>Eficiência</li>
                 </ul>
-              <p>Na construção da classe filha "Encadear" implementa essa técncia e aproveita para demontrar o fundamento de herança do paradigma orientado a objeto</p>
-
-              <div class="card-body bg-dark text-light m-5">
+              <p>Na construção da classe filha "Encadear" implementa essa técncia e aproveita para demontrar o fundamento de herança do paradigma orientado a objeto.</p>
+              <strong>Exemplo:</strong><br>
+              <pre>
+    from bioclass import Encadear
+    obj = Encadear
+    obj.adiciona_seq('dna','Exemplo','ATGCGTACCTGACGCTAGCTAGCTAGGCTAGCTAGCCTAGGCTAACG')
+    obj.dna(0).transcreve().traduz().imprime()
+              </pre>  
+              <strong class="ml-5">Código da Classe:</strong><br>
+              <div class="card-body bg-dark text-light ml-5 mr-5">
               <pre class="pre-scrollable text-light"><code>
 
 class Encadear(Bioprof):
