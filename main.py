@@ -1,32 +1,3 @@
-# from flask import Flask, request, render_template, jsonify
-# from flask_cors import CORS
-# import subprocess
-
-# # Para instalar os pacotes use pip install -r requirements.txt
-
-# app = Flask(__name__)
-# CORS(app)
-
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
-
-# @app.route('/execute', methods=['POST'])
-# def execute():
-#     data = request.get_json()
-#     code = data['code']
-    
-#     try:
-#         result = subprocess.run(['python', '-c', code], capture_output=True, text=True)
-#         output = result.stdout.strip()
-#         return jsonify({'output': output})
-#     except Exception as e:
-#         return jsonify({'error': str(e)})
-
-# if __name__ == '__main__':
-#     app.run(debug=False)
-
-
 from flask import Flask, request, render_template, jsonify
 import subprocess
 from jinja2 import Environment
@@ -56,13 +27,6 @@ def leiaMetodos(metodos):
                 else:
                     if chave in metodos:
                         metodos[chave].append(line)
-                        
-        with open("console.log","w") as out:
-            for c, l in metodos.items():
-                out.write(c+"\n") 
-                for elemento in l:
-                    out.write("---"+elemento+"\n") 
-                    
     except FileNotFoundError:
         print("Falha ao acessar arquivo!")                        
 
