@@ -42,7 +42,7 @@
 
           <ul class="nav flex-column bg-white mb-0">
             <li class="nav-item">
-              <a href="#introducao" class="nav-link text-dark font-italic bg-light">
+              <a href="#introducao" id="inicio" class="nav-link text-dark font-italic bg-light">
                         <i class="fa fa-align-left mr-3 text-primary fa-fw"></i>
                         Introdução
                     </a>
@@ -625,6 +625,10 @@ class Encadear(Bioprof):
 
         
 <script>
+ // Simular um clique no item "Introdução" ao carregar a página
+ document.getElementById('inicio').click();  
+
+
 //exibir o video da gifImage na gif-container
 var start = false
 document.getElementById('gif-container').addEventListener('click', function() {

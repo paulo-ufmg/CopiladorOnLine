@@ -94,6 +94,9 @@ body {
 .pratique {
   cursor: pointer;
 }
+#logo {
+  cursor: pointer;
+}
 
 .bio {
   margin-left: 80px;

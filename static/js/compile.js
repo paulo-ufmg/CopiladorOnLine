@@ -109,8 +109,7 @@ document.getElementById('limpa_ide').addEventListener('click', function() {
 
 //Recarrega a página ao clicar no botão a esquerda da página logo Bioclass
 document.getElementById('logo').addEventListener('click', function() {
-    alert(1)
-    window.location = window.location.href;
+    location.reload(true);
 });
 
 dicas.forEach(function(dica) {
